@@ -1,0 +1,44 @@
+Microsoft Windows [Version 10.0.18363.1082]
+(c) Корпорация Майкрософт (Microsoft Corporation), 2019. Все права защищены.
+
+C:\Users\egorp>scala
+Welcome to Scala 2.13.3 (Java HotSpot(TM) 64-Bit Server VM, Java 1.8.0_261).
+Type in expressions for evaluation. Or try :help.
+
+scala> val name = "Egor Pluzhnik"
+val name: String = Egor Pluzhnik
+
+scala> println(s"Hello Scala! This is ${name}")
+Hello Scala! This is Egor Pluzhnik
+
+scala> var greating = "Hola"
+var greating: String = Hola
+
+scala> println(s"${greating} Scala! This is ${name}")
+Hola Scala! This is Egor Pluzhnik
+
+scala> greating = "Guten tag"
+// mutated greating
+
+scala> println(s"${greating} Scala! This is ${name}")
+Guten tag Scala! This is Egor Pluzhnik
+
+scala> greating = "Hello"
+// mutated greating
+
+scala> println(s"${greating} Scala! This is ${name.reverse}")
+Hello Scala! This is kinhzulP rogE
+
+scala> greating = "Hola"
+// mutated greating
+
+scala> println(s"${greating} Scala! This is ${name.reverse}")
+Hola Scala! This is kinhzulP rogE
+
+scala> greating = "Guten tag"
+// mutated greating
+
+scala> println(s"${greating} Scala! This is ${name.reverse}")
+Guten tag Scala! This is kinhzulP rogE
+
+scala>
