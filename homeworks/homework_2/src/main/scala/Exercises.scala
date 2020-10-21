@@ -33,12 +33,13 @@ object Exercises {
     Число 98 можно разложить на множители 1 * 2 * 7 * 7, результат выполнения функции => Seq(2, 7).*/
     /*Реализовать юнит-тесты в src/test/scala для данной функции.*/
     def primeFactor(number: Int): Seq[Int] = {
+
         @tailrec
         def primeFactorTail(number: Int, divider: Int = 2, primeDividers : List[Int] = Nil): List[Int] = {
-            if (divider > Math.sqrt(number))
+            if (divider > Math.sqrt(Math.abs(number)))
                 return number :: primeDividers
 
-            if(number % divider == 0) primeFactorTail(number / divider, divider, divider :: primeDividers)
+            if (number % divider == 0) primeFactorTail(number / divider, divider, divider :: primeDividers)
             else primeFactorTail(number, divider + 1, primeDividers)
         }
 
@@ -61,16 +62,16 @@ object Exercises {
     def scalar(vec0: Vector2D, vec1: Vector2D): Double = vec0.x * vec1.x + vec0.y * vec1.y
     def cosBetween(vec0: Vector2D, vec1: Vector2D): Double = scalar(vec0, vec1) / abs(vec0) / abs(vec1)
 
-    def sumByFunc(leftVec0: Vector2D, leftVec1: Vector2D, action: (Vector2D, Vector2D) => Double, rightVec0: Vector2D, rightVec1: Vector2D): Double =
-        action(leftVec0, leftVec1) + action(rightVec0, rightVec1)
-
+    def sumByFunc(leftVec0: Vector2D, leftVec1: Vector2D, function: (Vector2D, Vector2D) => Double, rightVec0: Vector2D, rightVec1: Vector2D): Double =
+        function(leftVec0, leftVec1) + function(rightVec0, rightVec1)
 
     def sumScalars(leftVec0: Vector2D, leftVec1: Vector2D, rightVec0: Vector2D, rightVec1: Vector2D): Double =
         sumByFunc(leftVec0, leftVec1, scalar, rightVec0, rightVec1)
 
-
-    def sumCosines(leftVec0: Vector2D, leftVec1: Vector2D, rightVec0: Vector2D, rightVec1: Vector2D): Double =
+    def sumCosines(leftVec0: Vector2D, leftVec1: Vector2D, rightVec0: Vector2D, rightVec1: Vector2D): Double = {
         sumByFunc(leftVec0, leftVec1, cosBetween, rightVec0, rightVec1)
+    }
+
 
 
 
@@ -93,6 +94,11 @@ object Exercises {
             "Chrome" ->   (3,   7.18),   "Cesium" ->    (7,   1.873), "Zirconium" -> (3,   6.45)
         )
 
-    def sortByHeavyweight(ballsArray: Map[String, (Int, Double)] = balls): Seq[String] = ???
+    def sortByHeavyweight(ballsArray: Map[String, (Int, Double)] = balls): Seq[String] = {
 
+        def getMass(radius: Int, density: Double): Double =
+            density * 4/3 * Math.PI *  math.pow(radius, 3)
+
+        ballsArray.toSeq.sortBy( ball => getMass(ball._2._1, ball._2._2)).map(ball => ball._1)
+    }
 }
