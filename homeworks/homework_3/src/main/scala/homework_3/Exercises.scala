@@ -62,20 +62,23 @@ object Exercises {
       if(xs.isEmpty)
         None
       else
-        Option(xs.max)
+        Some(xs.max)
 
   /**
    * Задание №3
    * Допустим дана функция sumIntegers, которая умеет суммировать числа.
    */
-  def sumIntegers[CollectionType <: Iterable[Int]](xs: CollectionType): Int = xs.sum
+    def sumIntegers[CollectionType <: Iterable[Int]](xs: CollectionType): Int = xs.sum
 
   /**
    * Реализуйте на основе нее 3 варианта суммирования 2х чисел, отличающиеся способом передачи этих 2х чисел в функцию sumIntegers.
    * Как минимум одна из реализаций должна использовать тип данных (класс) написанный вами самостоятельно.
    */
-  def sum1(x: Int, y: Int): Int = sumIntegers(???)
-  def sum2(x: Int, y: Int): Int = sumIntegers(???)
-  def sum3(x: Int, y: Int): Int = sumIntegers(???)
+    class Container[T](values: T*) extends Iterable[T] {
+      override def iterator: Iterator[T] = values.iterator
+    }
 
+    def sum1(x: Int, y: Int): Int = sumIntegers(new Container(x, y))
+    def sum2(x: Int, y: Int): Int = sumIntegers(Seq(x, y))
+    def sum3(x: Int, y: Int): Int = sumIntegers(x::y::Nil)
 }
