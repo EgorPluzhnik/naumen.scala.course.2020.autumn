@@ -43,11 +43,26 @@ object Exercises {
    * Реализуйте функцию тремя разными способами, отличающимися тем как функция себя ведет на пустой коллекции.
    * Обратите внимание на возвращаемые типы.
    */
-  def max1(xs: Seq[Int]): Int = ???
+    def max1(xs: Seq[Int]): Int =
+      if (xs.nonEmpty)
+        xs.max
+      else
+        throw new UnsupportedOperationException("The sequence was empty")
 
-  def max2(xs: Seq[Int]): Seq[Int] = ???
 
-  def max3(xs: Seq[Int]): Option[Int] = ???
+
+    def max2(xs: Seq[Int]): Seq[Int] =
+      if (xs.nonEmpty)
+        xs.sortBy(x => -x).take(1)
+      else
+        Nil
+
+
+    def max3(xs: Seq[Int]): Option[Int] =
+      if(xs.isEmpty)
+        None
+      else
+        Option(xs.max)
 
   /**
    * Задание №3
