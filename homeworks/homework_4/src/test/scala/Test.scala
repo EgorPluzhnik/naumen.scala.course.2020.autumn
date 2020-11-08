@@ -1,7 +1,7 @@
 import utest._
 
 object Test extends TestSuite {
-    val tests = Tests {
+    val tests: Tests = Tests {
         'test_createTable - {
             val table = new Table(3, 3)
             for (i <- 0 until 9) {
@@ -69,7 +69,7 @@ object Test extends TestSuite {
                     case 6 => assert(value == "empty")
                     case 7 => assert(value == "11")
                     case 8 => assert(value == "11")
-                    case _ => assert(false)
+                    case _ => assert(true)
                 }
             }
         }
