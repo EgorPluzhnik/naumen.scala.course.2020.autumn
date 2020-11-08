@@ -69,7 +69,7 @@ object Test extends TestSuite {
                     case 6 => assert(value == "empty")
                     case 7 => assert(value == "11")
                     case 8 => assert(value == "11")
-                    case _ => assert(true)
+                    case _ => assert(false)
                 }
             }
         }
